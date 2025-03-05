@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            background-size: cover;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            background-image: url(https://i.pinimg.com/736x/19/7e/6e/197e6ebc45f5b68d7dafe9fe477ed3b6.jpg);
+        }
+        .container {
+            font-size: 25px;
+           justify-content: center;
+           align-items: center;
+            width: 500px;
+            margin: 0 auto;
+            height: 400px;
+            padding: 25px;
+            background-color:moccasin;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+        }
+        input[type="number"] {
+            font-size: 15px;
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        input[type="button"] {
+            font-size: 20px;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: cadetblue;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background-color:blue;
+        }
+        #output {
+            font-size: 15px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            margin-top: 20px; 
+            padding: 10px;
+            background-color: burlywood;
+            border-radius: 10px;
+        }
+        #output:hover{
+            background-color: darksalmon;
+        }
+        label{
+            font-size: 20px;
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Temperature Converter</h2>
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" placeholder="Enter Digit only">
+        <label for="unit">Temperature is in:</label>
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+        <input type="button" value="Convert" onclick="convertTemperature()">
+        <div id="output">
+            <h4>Result</h4>
+        </div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            var temperatureInput = document.getElementById("temperature").value;
+            var unit = document.getElementById("unit").value;
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "";
+
+            if (temperatureInput !== "") {
+                var temperature = parseFloat(temperatureInput);
+
+                if (unit === "celsius") {
+                    var fahrenheit = (temperature * 9/5) + 32;
+                    var kelvin = temperature + 273.15;
+                    outputDiv.innerHTML += temperature + " Celsius = " + fahrenheit.toFixed(2) + " Fahrenheit<br>";
+                    outputDiv.innerHTML += temperature + " Celsius = " + kelvin.toFixed(2) + " Kelvin";
+                } else if (unit === "fahrenheit") {
+                    var celsius = (temperature - 32) * 5/9;
+                    var kelvin = (temperature - 32) * 5/9 + 273.15;
+                    outputDiv.innerHTML += temperature + " Fahrenheit = " + celsius.toFixed(2) + " Celsius<br>";
+                    outputDiv.innerHTML += temperature + " Fahrenheit = " + kelvin.toFixed(2) + " Kelvin";
+                } else if (unit === "kelvin") {
+                    var celsius = temperature - 273.15;
+                    var fahrenheit = (temperature - 273.15) * 9/5 + 32;
+                    outputDiv.innerHTML += temperature + " Kelvin = " + celsius.toFixed(2) + " Celsius<br>";
+                    outputDiv.innerHTML += temperature + " Kelvin = " + fahrenheit.toFixed(2) + " Fahrenheit";
+                }
+            } else {
+                outputDiv.innerHTML = "Please enter a value to convert.";
+            }
+        }
+    </script>
+</body>
+</html>
